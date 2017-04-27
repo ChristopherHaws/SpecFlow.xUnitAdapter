@@ -5,4 +5,5 @@
 	</ItemGroup>
 
 	<UsingTask TaskName="SpecFlow.xUnitAdapter.Build.SpecFlowSourceMapAppender" AssemblyFile="SpecFlow.xUnitAdapter.Build.dll" />
+    <UsingTask TaskName="SpecFlow.xUnitAdapter.Build.SpecFlowValidate" AssemblyFile="SpecFlow.xUnitAdapter.Build.dll" />
 </Project>

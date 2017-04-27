@@ -10,7 +10,10 @@
     - Embedded files are copied to the obj\SpecFlow directory and added to the EmbeddedResource item group
     - Non-embedded files are copied directly to the target directory
     -->
-    <Target Name="SpecFlowFeatureSourceMapping" BeforeTargets="BeforeBuild">        
+    <Target Name="SpecFlowFeatureSourceMapping" BeforeTargets="BeforeBuild">
+        <SpecFlowValidate FeatureFiles="@(SpecFlowFeature)" />
+        <SpecFlowValidate FeatureFiles="@(SpecFlowEmbeddedFeature)" />
+        
         <SpecFlowSourceMapAppender FeatureFiles="@(SpecFlowFeature)" OutputDirectory="$(TargetDir)">
             <Output TaskParameter="SourceMappedFiles" PropertyName="_SpecFlowFeatureWithSourceMaps"/>
         </SpecFlowSourceMapAppender>
