@@ -11,7 +11,7 @@ namespace SpecFlow.xUnitAdapter.Build
 {
     public class SpecFlowValidate : AppDomainIsolatedTask
     {
-        private static Regex LineAndColumnRegex = new Regex(@"\(([^)]*)\)");
+        public static Regex LocationRegex = new Regex(@"\((\d+)+:(\d+)+\)");
 
         /// <summary>
         /// Gets or sets the collection of feature files being validated.
@@ -64,25 +64,17 @@ namespace SpecFlow.xUnitAdapter.Build
         }
 
         // Error message will have the location (17:2) for line 17, column 2.
-        private Location GetLocation(string message)
+        private Location GetLocation(String message)
         {
-            var match = LineAndColumnRegex.Match(message);
+            var match = LocationRegex.Match(message);
 
-            var lineAndColumn = match.Groups[1].Value;
-
-            if (String.IsNullOrWhiteSpace(lineAndColumn))
+            if (match.Success == false)
             {
                 return new Location();
             }
 
-            var split = lineAndColumn.Split(':');
-            if (split.Length != 2)
-            {
-                return new Location();
-            }
-
-            Int32.TryParse(split[0], out var line);
-            Int32.TryParse(split[1], out var column);
+            Int32.TryParse(match.Groups[1].Value, out var line);
+            Int32.TryParse(match.Groups[2].Value, out var column);
 
             return new Location(line, column);
         }
