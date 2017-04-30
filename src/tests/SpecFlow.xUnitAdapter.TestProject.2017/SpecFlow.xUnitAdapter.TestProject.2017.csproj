@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<!-- This will normally will not be here as nuget will take care of adding it -->
+	<Import Project="..\..\SpecFlow.xUnitAdapter.Build\bin\$(Configuration)\SpecFlow.xUnitAdapter.props" Condition="Exists('..\..\SpecFlow.xUnitAdapter.Build\bin\$(Configuration)\SpecFlow.xUnitAdapter.props')" />
+
+	<PropertyGroup>
+		<TargetFramework>net452</TargetFramework>
+
+		<!--
+		Prevents Visual Studio's instance of MSBuild from locking SpecFlow.xUnitAdapter.Build.dll.
+		This is only needed because we are building that dll in the same project we are using it.
+		-->
+		<GenerateResourceNeverLockTypeAssemblies>true</GenerateResourceNeverLockTypeAssemblies>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="SpecFlow.xUnit" Version="2.1.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+		<PackageReference Include="xunit" Version="2.2.0" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\SpecFlow.xUnitAdapter.SpecFlowPlugin\SpecFlow.xUnitAdapter.SpecFlowPlugin.csproj" />
+	</ItemGroup>
+
+	<!--<ItemGroup>
+		<SpecFlowEmbeddedFeature Include="**\*.feature" />
+	</ItemGroup>-->
+
+	<ItemGroup>
+		<None Update="SpecFlowFeature1.feature">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+	</ItemGroup>
+
+	<!-- This will normally will not be here as nuget will take care of adding it -->
+	<Import Project="..\..\SpecFlow.xUnitAdapter.Build\bin\$(Configuration)\SpecFlow.xUnitAdapter.targets" Condition="Exists('..\..\SpecFlow.xUnitAdapter.Build\bin\$(Configuration)\SpecFlow.xUnitAdapter.targets')" />
+
+</Project>
