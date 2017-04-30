@@ -33,8 +33,8 @@
 		<ItemGroup>
 			<!--Do this in an ItemGroup instead of as an output parameter so that it still gets added to the item set
 			during incremental builds when the task is skipped-->
-			<FileWrites Include="$(_SpecFlowFeatureWithSourceMaps)" Condition="Exists('$(_SpecFlowFeatureWithSourceMaps)')"/>
-			<FileWrites Include="$(_SpecFlowEmbeddedFeatureWithSourceMaps)" Condition="Exists('$(_SpecFlowEmbeddedFeatureWithSourceMaps)')"/>
+			<FileWrites Include="$(_SpecFlowFeatureWithSourceMaps)" />
+			<FileWrites Include="$(_SpecFlowEmbeddedFeatureWithSourceMaps)" />
 		</ItemGroup>
 	</Target>
 
