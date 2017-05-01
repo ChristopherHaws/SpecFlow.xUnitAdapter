@@ -23,6 +23,10 @@ indent_size = 2
 [nuget.config]
 indent_size = 2
 
+###############
+# .NET Code Style Settings
+# https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
+###############
 
 # Advanced
 dotnet_sort_system_directives_first = true
